@@ -2,14 +2,14 @@
  User story, the Diary, is able to look across all DiaryEntrys 
  provide the user with the best entry to read in the time available
 
-TESTING 
+TESTING EXAMPLES
 """
 When two diary entries are made
 We get a list of both diary entries
 (integration)"""
     diary = Diary()
-    contents_1 = DiaryEntry("Monday", "Today great")
-    contents_2 = DiaryEntry("Tuesday", "Holiday really really fun fun")
+    entry_1 = DiaryEntry("Monday", "Today great")
+    entry_2 = DiaryEntry("Tuesday", "Holiday really really fun fun")
     assert diary.all() == [contents_1, contents_2]
 
 """
@@ -17,20 +17,35 @@ When two diary entries are made
 We can get total word count of both diary entries
 (integration)"""
     diary = Diary()
-    contents_1 = DiaryEntry("Monday", "Today was great")
-    contents_2 = DiaryEntry("Tuesday", "Holiday really really fun fun")
+    entry_1 = DiaryEntry("Monday", "Today was great")
+    entry_2 = DiaryEntry("Tuesday", "Holiday really really fun fun")
+    diary.add(entry_1)
+    diary.add(entry_2)
     assert diary.count_words() == 10
 
 """
-When two diary entries are made
-we can get total reading time of both diaries 
+When two diary entries are given
+we can get total reading time of both diaries entries
 (integration)"""
     diary = Diary()
-    contents_1 = DiaryEntry("Monday", "Today was great")
-    contents_2 = DiaryEntry("Tuesday", "Holiday really really fun fun")
+    entry_1 = DiaryEntry("Monday", "Today was great one two three")
+    entry_2 = DiaryEntry("Tuesday", "Holiday is really fun")
+    wpm = 2
+    diary.add(entry_1)
+    diary.add(entry_2)
     assert diary.reading_time(2) == 5
 
-
+"""
+When two diary entries are given, we can 
+return the instance of diary entry which can be best read in the time the reader has
+(integration)"""
+    diary = Diary()
+    entry_1 = DiaryEntry("Monday", "One two three")
+    entry_2 = DiaryEntry("Tuesday", "One two three four five six seven")
+    wpm = 2
+    diary.add(entry_1)
+    diary.add(entry_2)
+    assert diary.find_best_entry_for_reading_time(2, 2) == entry_1
 
 CLASS SIGNATURES 
 
@@ -48,10 +63,10 @@ class Diary:
     def all(self):
         # Returns:      list of instances of DiaryEntry
 
-    def count_words(self):
+    def count_all_words(self):
         # Returns:      integer, number of words in all diary entries
     
-    def reading_time(self, wpm):
+    def reading_total_time(self, wpm):
         # Parameters:   wpm, integer
         # Returns:      integer, estimate of reading time in minutes
         # if reader reads all diary entries
