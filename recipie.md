@@ -36,8 +36,9 @@ we can get total reading time of both diaries entries
     assert diary.reading_time(2) == 5
 
 """
-When two diary entries are given, we can 
+When two diary entries are given one long one short, we can 
 return the instance of diary entry which can be best read in the time the reader has
+i.e. ignore the long one it is too long for the time we have. 
 (integration)"""
     diary = Diary()
     entry_1 = DiaryEntry("Monday", "One two three")
@@ -46,6 +47,33 @@ return the instance of diary entry which can be best read in the time the reader
     diary.add(entry_1)
     diary.add(entry_2)
     assert diary.find_best_entry_for_reading_time(2, 2) == entry_1
+
+"""
+When two diary entries are given, we will 
+return most appropriate, so the longest, if we have time to read it
+(integration)"""
+    diary = Diary()
+    entry_1 = DiaryEntry("Monday", "One two three")
+    entry_2 = DiaryEntry("Tuesday", "One two three four five six seven")
+    diary.add(entry_1)
+    diary.add(entry_2)
+    assert diary.find_best_entry_for_reading_time(2, 5) == entry_2
+#   (2, wpm ; 5, minutes to read) 
+
+"""
+When two diary entries are given, we will 
+return most appropriate, so the longest, if we have time to read it
+(integration)"""
+def test_longest_entries_returned_if_time_to_read_the_entry_check():
+    diary = Diary()
+    entry_1 = DiaryEntry("Wednesday", "One two three four five six seven")
+    entry_2 = DiaryEntry("Thursday", "One two three")
+    entry_3 = DiaryEntry("Friday", "Fun day")
+    diary.add(entry_1)
+    diary.add(entry_2)
+    diary.add(entry_3)
+    assert diary.find_best_entry_for_reading_time(2, 5) == entry_1 
+#   (2, wpm ; 5, minutes to read) 
 
 CLASS SIGNATURES 
 
