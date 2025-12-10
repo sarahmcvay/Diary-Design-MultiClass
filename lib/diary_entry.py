@@ -6,3 +6,8 @@ class DiaryEntry:
 
     def count_words(self):
         return len(self.contents.split())
+
+    def reading_time(self, wpm):
+        self.wpm = wpm
+        content_count = len((self.contents).split())
+        return content_count / self.wpm
