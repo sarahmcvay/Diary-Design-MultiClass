@@ -23,3 +23,4 @@ def test_initially_reading_time_raises_error():
     with pytest.raises(Exception) as e:
         diary.reading_total_time(2)  #remember to add wpm to the test
     assert str(e.value) == "No entries added yet"
+

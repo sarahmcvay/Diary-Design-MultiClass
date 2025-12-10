@@ -17,4 +17,3 @@ def test_three_word_contents_returns_three():
     diary_entry = DiaryEntry("Monday", "Today was great")
     assert diary_entry.count_words() == 3
 
-    
