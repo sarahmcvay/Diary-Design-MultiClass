@@ -1,3 +1,5 @@
+Golden Square Practices
+
  ```python
  User story, the Diary, is able to look across all DiaryEntrys 
  provide the user with the best entry to read in the time available
